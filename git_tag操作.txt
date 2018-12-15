@@ -1,0 +1,29 @@
+git tag 管理
+转至元数据结尾
+由 chen shuizhang创建 14分钟以前 转至元数据起始
+增
+本地添加： git tag <tagName>
+推送到远程： git push origin <tagName>                                  // 推送指定版本 tag 到远程
+把本地所有tag都推送到远程： git push origin --tags
+删
+ 一个一个删
+本地删除tag :  git  tag -d TagName
+指定删除远程tag: git push origin :<oldTagName>
+删除远程tag:   git push origin :refs/tags/TagName
+批量删
+全部删除本地: git tag -l | xargs git tag -d
+批量删本地:  git tag -l| awk '/online_ssm_[0-9]\.[0-9]\.[0-9]$/ {print  $1}' | xargs git tag -d
+批量删远程(按指定正则匹配):
+一： git show-ref --tag | awk '/online_shop-m-operation_[0-9]\.[0-9]\.[0-9]/ {print ":" $2}' | xargs git push origin           // 匹配符合 online_shop-m-operation_[0-9]\.[0-9]\.[0-9] 的 tag 号
+
+二： git show-ref --tag | awk '/ssm_release_(.+)$/ {print ":" $2}' | xargs git push origin                                               // 匹配符合 ssm_release_ 开头的 tag 号
+
+三： 全部删远程(全部删除): git show-ref --tag | awk '/(.*)(\s+)(.*)$/ {print ":" $2}' | xargs git push origin
+查
+查看本地:  git tag -l
+查看某个tag信息： git show <tagName>
+查看远程:  git show-ref --tag
+找出符合模式的tag: git tag -l 'ssm_*'
+检出指定分支指定tag
+git checkout -B <branckName> <tagName> //为什么加-B呢？如果当前仓库中同名的分支，那么使用普通的git checkout -b 这个命令，是会报错的，且同名分支无法创建。如果使用-B参数，那么就可以强制创建新的分支。
+

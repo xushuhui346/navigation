@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>前端导航</title>
+    <script src="data/data.json"></script>
+    <script src="js/vue.min.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+        <h1>前端网址导航</h1>
+        <ul v-for="data in datas">
+            <label for="">{{data.label}}</label>
+            <li  v-for="item in data.list">
+                <a :href=item.url target="_blank" >{{item.name}}</a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    console.log(datas)
+    var app = new Vue({
+        el: '#app',
+        data(){
+            return {
+                datas:[]
+            }
+        },
+        created () {
+            this.datas = datas;
+        }
+    }) 
+</script>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body{
+        height: 100%;
+        background:#dadada;
+    }
+    #app{
+        overflow: hidden;
+        padding: 20px 0;
+    }
+    h1{
+
+        margin: 10px 0;
+        text-align: center;
+    }
+    ul{
+        padding: 0 20px;
+        overflow: hidden;
+        margin: 0 auto;
+        list-style: none;
+        clear: both;
+    }
+    label{
+        float: left;
+        height: 36px;
+        line-height: 36px;
+    }
+    li{
+        float: left;
+        height: 30px;
+        margin: 6px 12px;
+        list-style: none;
+    }
+    a{
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        color: skyblue;
+        text-decoration: none;
+        transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
+        font-size: 20px;
+    }
+    a:hover{
+        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        font-weight: 500;  
+    }
+</style>
+</html>

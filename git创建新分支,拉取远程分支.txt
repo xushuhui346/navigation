@@ -1,0 +1,30 @@
+git创建新分支
+
+1.创建本地分支
+git branch 分支名，例如：git branch localBranch
+注：localBranch是分支名称，可以随便定义。
+
+2.切换本地分支
+git checkout 分支名，例如从master切换到分支：git checkout 2.0.1.20120806
+
+3.远程分支就是本地分支push到服务器上。比如master就是一个最典型的远程分支（默认）。
+git push origin master
+
+
+4.删除远程分支
+git push origin :develop
+
+1.拉取远程分支到本地新分支
+git checkout -b 本地分支名 origin/远程分支名
+
+2,创建完可以查看一下,分支已经切换到dev
+git branch
+    * dev
+    master
+
+3.本地分支重新设置关联远程分支
+git branch --set-upstream-to=origin/dev
+
+4.刷新远程分支
+git fetch  添加分支刷新
+git remote update origin --prune   删除分支刷新

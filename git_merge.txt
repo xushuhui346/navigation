@@ -1,0 +1,18 @@
+git merge操作
+
+举例：dev merge到 master上
+
+1.切换到需要merge的分支
+git checkout master
+
+2.merge需要提交代码的分支
+git merge dev
+
+3.如果有冲突，解决文件冲突，然后重新add相关文件
+git add 文件名 
+
+4.继续merge
+git merge --continue
+
+5.push代码
+git push origin master
